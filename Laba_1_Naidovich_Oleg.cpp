@@ -103,7 +103,8 @@ void Add_from_file()
 				continue;
 			}
 			data_number = atoi(pch);
-			push(data_number, data_name);
+			push(data_number, data_name);		
+			pch = strtok(NULL, line); // берет следующее значение в строке
 		}
 	}
 }
@@ -130,42 +131,49 @@ void Add_from_user()
 	char data_name[20];
 
 	cout << "\nВведите номер телефона: "; cin >> data_number;
-	cout << "\nВведите имя владельца телефона "; cin >> data_name;
+	cout << "Введите имя владельца: "; cin >> data_name;
 	push(data_number, data_name);
 }
 
 
 void Print()
 {
+	if (isEmpty() == true)
+	{
+		cout << "Очередь пустая. Добавьте новые элементы\n"; 
+		return;
+	}
 	while (!isEmpty())
 	{
-		cout << "\nИмя: " << head->name << "Номер: " << head->number << "\n";
+		cout << "\nИмя: " << head->name << " Номер: " << head->number << "\n";
 		head = head->next;
 	}
 	return;
 }
+
 void Delete_all_elements()
 {
 
 }
 
-
 void Panel()
 {
-	int user_data;
+	int user_data = 123;
 	cout << "\nДля выхода введите 111\n";
-	cout << "\n0. Инициализация очереди - без этого работать не будет\n";
-	cout << "\n1. Добавить в очередь элементы из файла\n";
-	cout << "\n2. Добавить элемент с консоли\n";
-	cout << "\n3. Удаление последнего элемента\n";
-	cout << "\n4. Удаление всех элементов\n";
-	cout << "\n5. Вывод все на экран\n";
+	cout << "\n0. Инициализация очереди - без этого работать не будет";
+	cout << "\n1. Добавить в очередь элементы из файла";
+	cout << "\n2. Добавить элемент с консоли";
+	cout << "\n3. Удаление последнего элемента";
+	cout << "\n4. Удаление всех элементов";
+	cout << "\n5. Вывод все на экран";
 
-	while (user != 111)
+	while (user_data != 111)
 	{
-		cin >> user_data;
+		cout << "\nВведите номер операции: ";  cin >> user_data;
 		switch (user_data)
 		{
+			case(111):
+				return;
 			case(0):
 			{
 				InitQueue();
@@ -204,15 +212,10 @@ void Panel()
 		}
 	}
 }
+
 int main(void)
 {
 	setlocale(LC_ALL, "RUS");
-
-	// 1 *************************************************
-
-
-
-
 
 	Panel();
 }
