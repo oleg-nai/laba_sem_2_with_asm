@@ -144,26 +144,75 @@ void Print()
 	}
 	return;
 }
-
-void Panel()
+void Delete_all_elements()
 {
 
 }
 
+
+void Panel()
+{
+	int user_data;
+	cout << "\nДля выхода введите 111\n";
+	cout << "\n0. Инициализация очереди - без этого работать не будет\n";
+	cout << "\n1. Добавить в очередь элементы из файла\n";
+	cout << "\n2. Добавить элемент с консоли\n";
+	cout << "\n3. Удаление последнего элемента\n";
+	cout << "\n4. Удаление всех элементов\n";
+	cout << "\n5. Вывод все на экран\n";
+
+	while (user != 111)
+	{
+		cin >> user_data;
+		switch (user_data)
+		{
+			case(0):
+			{
+				InitQueue();
+				break;
+			}
+			case(1):
+			{
+				Add_from_file();
+				break;
+			}
+			case(2):
+			{
+				Add_from_user();
+				break;
+			}
+			case(3):
+			{
+				Pop();
+				break;
+			}
+			case(4):
+			{
+				Delete_all_elements();
+				break;
+			}
+			case(5):
+			{
+				Print();
+				break;
+			}
+			default:
+			{
+				cout << "\nВы ввели неверное значение: ";
+				break;
+			}
+		}
+	}
+}
 int main(void)
 {
 	setlocale(LC_ALL, "RUS");
 
 	// 1 *************************************************
-	InitQueue();
 
-	Add_from_file();
 
-	Add_from_user();
 
-	Pop();
 
-	Print();
 
 	Panel();
 }
